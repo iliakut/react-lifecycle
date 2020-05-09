@@ -2,6 +2,22 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+
+/*
+* lifecycle
+* MOUNTING
+* constructor() => render() => componentDidMount()
+*
+* UPDATES
+* New Props || setState() => render() => componentDidUpdate()
+*
+* UNMOUNTING
+* componentWillUnmount()
+*
+* ERROR
+* componentDidCatch()
+*/
+
 function App() {
   return (
     <div className="App">
