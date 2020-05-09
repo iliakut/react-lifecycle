@@ -24,8 +24,29 @@ class App extends Component {
   };
 
   constructor(props) {
+    /*
+    * тут создан объект (класс) компонента, но он еще не прошел рендер
+    */
+    console.log('constructor()');
     super(props); // Если это не сделать, this.props не будет определён.
     this.state.test = 1; // Нельзя вызывать setState, вместо этого можно сразу записывать this.state
+  }
+
+  componentDidMount() {
+    console.log('componentDidMount()')
+    /*
+    * компонент подключен, DOM уже на странице
+    * тут нужно делать запросы на сервер, работу с DOM,
+    * записываем setState после получения данных
+    */
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    /*
+    * вызывается сразу после обновления. Не вызывается при первом рендере
+    */
+    console.log('componentDidUpdate()');
+
   }
 
   render() {
