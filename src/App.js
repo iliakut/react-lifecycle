@@ -77,6 +77,8 @@ class App extends Component {
     * вызвав setState. Однако, этот способ скоро будет считаться устаревшим.
     * Используйте static getDerivedStateFromError() для рендера резервного интерфейса.
     */
+
+    // можно создать компоненты обертки HOC для ловли ошибок в нижних компонентах
   }
 
   setRandomTestState() {
