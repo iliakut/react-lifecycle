@@ -33,20 +33,58 @@ class App extends Component {
   }
 
   componentDidMount() {
-    console.log('componentDidMount()')
+    console.log('componentDidMount()');
     /*
     * компонент подключен, DOM уже на странице
     * тут нужно делать запросы на сервер, работу с DOM,
     * записываем setState после получения данных
     */
+
+    this.setRandomTestState();
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     /*
     * вызывается сразу после обновления. Не вызывается при первом рендере
+    * prevProps - предыдущие пропсы (до обновления)
+    * prevState - предыдуший стейт (до обновления)
     */
     console.log('componentDidUpdate()');
 
+    // пример (как watch во Vue), но обычно это делается с пропсами
+    if (prevState.test !== this.state.test) {
+      console.log('componentDidUpdate() difference of state', prevState.test, this.state.test);
+    }
+  }
+
+  componentWillUnmount() {
+    /*
+    * вызывается перед размонтированием компонента
+    * используется для очисти таймеров, остановки запросов, отписки от сокетов и т.п.
+    */
+    console.log('componentWillUnmount()');
+  }
+
+  componentDidCatch(error, errorInfo) {
+    /*
+    * Этот метод жизненного цикла вызывается после возникновения ошибки у компонента-потомка. Он получает два параметра:
+    * error — перехваченная ошибка
+    * info — объект с ключом componentStack, содержащий информацию о компоненте, в котором произошла ошибка.
+    * componentDidCatch() вызывается во время этапа «фиксации»,
+    * поэтому здесь можно использовать побочные эффекты. Метод можно использовать для логирования ошибок.
+    *
+    * В случае ошибки вы можете рендерить запасной интерфейс с помощью componentDidCatch(),
+    * вызвав setState. Однако, этот способ скоро будет считаться устаревшим.
+    * Используйте static getDerivedStateFromError() для рендера резервного интерфейса.
+    */
+  }
+
+  setRandomTestState() {
+    setTimeout(() => {
+      this.setState({
+        test: Math.random()
+      })
+    }, 5000)
   }
 
   render() {
